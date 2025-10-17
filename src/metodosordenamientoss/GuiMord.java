@@ -1,6 +1,5 @@
 package metodosordenamientoss;
 
-
 import javax.swing.table.DefaultTableModel;
 
 public class GuiMord extends javax.swing.JFrame {
@@ -9,11 +8,15 @@ public class GuiMord extends javax.swing.JFrame {
         initComponents();
     }
     Vector vector;
+    double[][] resultados = new double[9][4];
     DefaultTableModel modeloTabla;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         sizeSpinner = new javax.swing.JSpinner();
@@ -32,6 +35,7 @@ public class GuiMord extends javax.swing.JFrame {
 
         jLabel1.setText("Cantida de elementos:");
 
+        buttonGroup1.add(btnDesordenadoInicial);
         btnDesordenadoInicial.setText("Desordenado");
         btnDesordenadoInicial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -39,12 +43,16 @@ public class GuiMord extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(btnAscendenteInicial);
         btnAscendenteInicial.setText("Ascendente");
 
+        buttonGroup1.add(btnDescendenteInicial);
         btnDescendenteInicial.setText("Descendente");
 
+        buttonGroup2.add(btnAscendenteFinal);
         btnAscendenteFinal.setText("Ascendente");
 
+        buttonGroup2.add(btnDescendenteFinal);
         btnDescendenteFinal.setText("Descendente");
 
         btnEvaluar.setText("Evaluar metodos");
@@ -60,6 +68,8 @@ public class GuiMord extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {"BUBBLE SORT", null, null, null, null},
+                {"INSERCION", null, null, null, null},
                 {"", null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -71,7 +81,7 @@ public class GuiMord extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Metodo de Ordenamiento", "Tiempo real", "Op. Elementales", "Comparaciones", "Intercambios"
+                "Metodo de Ordenamiento", "Tiempo real (nano)", "Op. Elementales", "Comparaciones", "Intercambios"
             }
         ) {
             Class[] types = new Class [] {
@@ -172,50 +182,38 @@ public class GuiMord extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDesordenadoInicialActionPerformed
 
-    private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
-
-        vector = new Vector( (int) sizeSpinner.getValue());
-        modeloTabla.setValueAt("dssadfsaf",0,1);
-
-        if (vector.length() > 10) {
-            vector.cargaRandom(0, vector.length()*10);
-        } else {
-            // TODO: Si el usuario elige menos de 10 valores los tiene que ingresar manualmente
-        }
-
-        /*Vector valoress = new Vector();
-        valoress = vector.ordenamientoBurbujaMenorAMayor();
-        cargarMatriz(0);
-
-        valoress = vector.ordenamientoBurbujaMenorAMayor();
-        cargarMatriz(1);
-
-        public void cargarMatriz (int fila, vector valoress){
-
-            for (int i = 0; i < 3; i++) {
-                resultados[fila][i]= valoress.getElement(i);
-            }
-
-        }*/
-
-        // ESTO LO PUSE SOLO COMO PRUEBA PARA VER SI SE ESTÁ ORDENANDO BIEN
-        vector.burbujaMejoradaDescendente();
-        vector.imprimirVector();
-        // FIN DE LA PRUEBA
-    }//GEN-LAST:event_btnEvaluarActionPerformed
-        private void llenarTabla() {
+    private void llenarTabla() {
         // Obtener los resultados de la lógica
-            double[][] resultados = vector.resultados();
+        //resultados = vector.getMatriz(resultados);
 
         // Llenar la tabla con los datos de la matriz
-            for (int i = 0; i < resultados.length; i++) {
+        for (int i = 0; i < 9; i++) {
             // Asumimos que la matriz tiene 5 columnas
-            for (int j = 0; j < resultados[i].length; j++) {
-                modeloTabla.setValueAt(resultados[i][j], i, j);  // Coloca cada valor en la tabla
+            for (int j = 0; j < 4; j++) {
+                jTable1.setValueAt(resultados[i][j], i, j+1);  // Coloca cada valor en la tabla
             }
         }
     }
     
+    private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
+
+        vector = new Vector((int) sizeSpinner.getValue());
+
+        if (vector.length() > 10) {
+            vector.cargaRandom(0, vector.length() * 10);
+        } else {
+            // TODO: Si el usuario elige menos de 10 valores los tiene que ingresar manualmente
+        }
+        
+        
+
+        //resultados=vector.ordenamientoBurbujaAscendente(resultados);
+        llenarTabla();
+        vector.imprimirVector();
+        // FIN DE LA PRUEBA
+    }//GEN-LAST:event_btnEvaluarActionPerformed
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnAscendenteFinal;
     private javax.swing.JRadioButton btnAscendenteInicial;
@@ -223,6 +221,8 @@ public class GuiMord extends javax.swing.JFrame {
     private javax.swing.JRadioButton btnDescendenteInicial;
     private javax.swing.JRadioButton btnDesordenadoInicial;
     private javax.swing.JButton btnEvaluar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -232,3 +232,4 @@ public class GuiMord extends javax.swing.JFrame {
     private javax.swing.JSpinner sizeSpinner;
     // End of variables declaration//GEN-END:variables
 }
+
