@@ -21,15 +21,15 @@ public class Vector {
     }
 
     public double[][] ascendentes(double[][] resultados) {
-        resultados = ordenamientoBurbujaAscendente(resultados);
-        resultados = insercionBinaria(resultados);
+        resultados = clonar().ordenamientoBurbujaAscendente(resultados);
+        resultados = clonar().insercionBinaria(resultados);
         //resultados=burbujaMejoradaAscendente();
         return resultados;
     }
 
     public double[][] descendentes(double[][] resultados) {
-        resultados = ordenamientoBurbujaDescendete(resultados);
-        resultados = insercionBinaria(resultados);
+        resultados = clonar().ordenamientoBurbujaDescendete(resultados);
+        resultados = clonar().insercionBinaria(resultados);
         //resultados = burbujaMejoradaDescendente();
         return resultados;
     }

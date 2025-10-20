@@ -17,6 +17,15 @@ public class GuiMord extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        jDialog1 = new javax.swing.JDialog();
+        textFieldNumeros = new javax.swing.JTextField();
+        btnAgregarNro = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textAreaVistaPrevia = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         sizeSpinner = new javax.swing.JSpinner();
@@ -31,11 +40,54 @@ public class GuiMord extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        jDialog1.setAlwaysOnTop(true);
+        jDialog1.setSize(new java.awt.Dimension(50, 50));
+        jDialog1.setType(java.awt.Window.Type.POPUP);
+        jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        textFieldNumeros.setText("0");
+        textFieldNumeros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldNumerosActionPerformed(evt);
+            }
+        });
+        jDialog1.getContentPane().add(textFieldNumeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 155, 74, -1));
+
+        btnAgregarNro.setText("Aceptar");
+        btnAgregarNro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarNroActionPerformed(evt);
+            }
+        });
+        jDialog1.getContentPane().add(btnAgregarNro, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 191, 57, -1));
+        jDialog1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 115, 210, 34));
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Ingrese un número para la posición 1 del vector:");
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setAutoscrolls(false);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jDialog1.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 66, 160, -1));
+
+        textAreaVistaPrevia.setColumns(20);
+        textAreaVistaPrevia.setRows(5);
+        jScrollPane3.setViewportView(textAreaVistaPrevia);
+
+        jDialog1.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 66, -1, 219));
+
+        jLabel5.setText("Vista previa:");
+        jDialog1.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 38, 72, -1));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Cantida de elementos:");
 
         buttonGroup1.add(btnDesordenadoInicial);
+        btnDesordenadoInicial.setSelected(true);
         btnDesordenadoInicial.setText("Desordenado");
         btnDesordenadoInicial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,12 +97,23 @@ public class GuiMord extends javax.swing.JFrame {
 
         buttonGroup1.add(btnAscendenteInicial);
         btnAscendenteInicial.setText("Ascendente");
+        btnAscendenteInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAscendenteInicialActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(btnDescendenteInicial);
         btnDescendenteInicial.setText("Descendente");
 
         buttonGroup2.add(btnAscendenteFinal);
+        btnAscendenteFinal.setSelected(true);
         btnAscendenteFinal.setText("Ascendente");
+        btnAscendenteFinal.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                btnAscendenteFinalStateChanged(evt);
+            }
+        });
 
         buttonGroup2.add(btnDescendenteFinal);
         btnDescendenteFinal.setText("Descendente");
@@ -183,9 +246,6 @@ public class GuiMord extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDesordenadoInicialActionPerformed
 
     private void llenarTabla() {
-        // Obtener los resultados de la lógica
-        //resultados = vector.getMatriz(resultados);
-
         // Llenar la tabla con los datos de la matriz
         for (int i = 0; i < 9; i++) {
             // Asumimos que la matriz tiene 5 columnas
@@ -201,20 +261,52 @@ public class GuiMord extends javax.swing.JFrame {
 
         if (vector.length() > 10) {
             vector.cargaRandom(0, vector.length() * 10);
+            evaluarMetodos();
         } else {
-            // TODO: Si el usuario elige menos de 10 valores los tiene que ingresar manualmente
+            jDialog1.setVisible(true);
         }
         
-        
+    }//GEN-LAST:event_btnEvaluarActionPerformed
 
-        //resultados=vector.ordenamientoBurbujaAscendente(resultados);
+    private void evaluarMetodos() {
+        if (btnAscendenteInicial.isSelected()) {
+            vector.burbujaMejoradaAscendente();
+        } else if (btnDescendenteInicial.isSelected()) {
+            //vector.ordenamientoDescendente()
+        }
+        
+        if(btnAscendenteFinal.isSelected()){
+            resultados = vector.ascendentes(resultados);
+        } else if (btnDescendenteFinal.isSelected()){
+            resultados = vector.descendentes(resultados);
+        }
         llenarTabla();
         vector.imprimirVector();
-        // FIN DE LA PRUEBA
-    }//GEN-LAST:event_btnEvaluarActionPerformed
+    }
+    private void btnAscendenteInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAscendenteInicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAscendenteInicialActionPerformed
+
+    private void btnAscendenteFinalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAscendenteFinalStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAscendenteFinalStateChanged
+
+    private void textFieldNumerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNumerosActionPerformed
+    }//GEN-LAST:event_textFieldNumerosActionPerformed
+
+    private void btnAgregarNroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNroActionPerformed
+        textAreaVistaPrevia.setText(textAreaVistaPrevia.getText()+ "\n" + textFieldNumeros.getText());
+        vector.add(Integer.parseInt(textFieldNumeros.getText()));
+        textFieldNumeros.setText("");
+        if (vector.size() == (int) sizeSpinner.getValue()){
+            jDialog1.setVisible(false);
+            evaluarMetodos();
+        }
+    }//GEN-LAST:event_btnAgregarNroActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarNro;
     private javax.swing.JRadioButton btnAscendenteFinal;
     private javax.swing.JRadioButton btnAscendenteInicial;
     private javax.swing.JRadioButton btnDescendenteFinal;
@@ -223,13 +315,21 @@ public class GuiMord extends javax.swing.JFrame {
     private javax.swing.JButton btnEvaluar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JSpinner sizeSpinner;
+    private javax.swing.JTextArea textAreaVistaPrevia;
+    private javax.swing.JTextField textFieldNumeros;
     // End of variables declaration//GEN-END:variables
 }
 
