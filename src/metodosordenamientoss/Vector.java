@@ -29,7 +29,6 @@ public class Vector {
         resultados = clonar().seleccionAscendente(resultados);
         resultados = clonar().burbujaOptimizadaAscendente(resultados);
         resultados = clonar().mergeSortAscendente(resultados);
-        //resultados=burbujaMejoradaAscendente();
         return resultados;
     }
 
@@ -42,7 +41,6 @@ public class Vector {
         resultados = clonar().seleccionDescendente(resultados);
         resultados = clonar().burbujaOptimizadaDescendente(resultados);
         resultados = clonar().mergeSortDescendente(resultados);
-        //resultados = burbujaMejoradaDescendente();
         return resultados;
     }
 

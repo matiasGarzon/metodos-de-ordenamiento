@@ -270,7 +270,7 @@ public class GuiMord extends javax.swing.JFrame {
         if (btnAscendenteInicial.isSelected()) {
             vector.burbujaMejoradaAscendente();
         } else if (btnDescendenteInicial.isSelected()) {
-            //vector.ordenamientoDescendente()
+            vector.burbujaMejoradaDescendente();
         }
         
         if(btnAscendenteFinal.isSelected()){
