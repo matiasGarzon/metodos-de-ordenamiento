@@ -143,10 +143,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -194,7 +194,6 @@
                   <EmptySpace pref="69" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -227,8 +226,8 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="170" max="-2" attributes="0"/>
-                  <EmptySpace pref="257" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="152" max="-2" attributes="0"/>
+                  <EmptySpace pref="275" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -320,19 +319,16 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="11">
+                  <Table columnCount="5" rowCount="8">
                     <Column editable="true" title="Metodo de Ordenamiento" type="java.lang.String">
-                      <Data value="BUBBLE SORT"/>
-                      <Data value="INSERCION"/>
-                      <Data value=""/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="null"/>
+                      <Data value="Burbuja"/>
+                      <Data value="Insercion"/>
+                      <Data value="Shell"/>
+                      <Data value="Burbuja Mejorada"/>
+                      <Data value="Quick Sort"/>
+                      <Data value="Seleccion"/>
+                      <Data value="Burbuja Optimizada"/>
+                      <Data value="Merge Sort"/>
                     </Column>
                     <Column editable="true" title="Tiempo real (nano)" type="java.lang.Double"/>
                     <Column editable="true" title="Op. Elementales" type="java.lang.Integer"/>
@@ -376,6 +372,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+              </AccessibilityProperties>
             </Component>
           </SubComponents>
         </Container>

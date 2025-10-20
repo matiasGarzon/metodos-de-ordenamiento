@@ -131,17 +131,14 @@ public class GuiMord extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"BUBBLE SORT", null, null, null, null},
-                {"INSERCION", null, null, null, null},
-                {"", null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {"Burbuja", null, null, null, null},
+                {"Insercion", null, null, null, null},
+                {"Shell", null, null, null, null},
+                {"Burbuja Mejorada", null, null, null, null},
+                {"Quick Sort", null, null, null, null},
+                {"Seleccion", null, null, null, null},
+                {"Burbuja Optimizada", null, null, null, null},
+                {"Merge Sort", null, null, null, null}
             },
             new String [] {
                 "Metodo de Ordenamiento", "Tiempo real (nano)", "Op. Elementales", "Comparaciones", "Intercambios"
@@ -157,6 +154,7 @@ public class GuiMord extends javax.swing.JFrame {
         });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,7 +189,6 @@ public class GuiMord extends javax.swing.JFrame {
                         .addComponent(btnEvaluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(69, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
@@ -217,8 +214,8 @@ public class GuiMord extends javax.swing.JFrame {
                         .addGap(2, 2, 2)
                         .addComponent(btnEvaluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -232,10 +229,10 @@ public class GuiMord extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -247,7 +244,7 @@ public class GuiMord extends javax.swing.JFrame {
 
     private void llenarTabla() {
         // Llenar la tabla con los datos de la matriz
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 8; i++) {
             // Asumimos que la matriz tiene 5 columnas
             for (int j = 0; j < 4; j++) {
                 jTable1.setValueAt(resultados[i][j], i, j+1);  // Coloca cada valor en la tabla
