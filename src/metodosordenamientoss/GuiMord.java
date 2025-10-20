@@ -41,7 +41,7 @@ public class GuiMord extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         jDialog1.setAlwaysOnTop(true);
-        jDialog1.setSize(new java.awt.Dimension(50, 50));
+        jDialog1.setSize(new java.awt.Dimension(771, 554));
         jDialog1.setType(java.awt.Window.Type.POPUP);
         jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -59,7 +59,7 @@ public class GuiMord extends javax.swing.JFrame {
                 btnAgregarNroActionPerformed(evt);
             }
         });
-        jDialog1.getContentPane().add(btnAgregarNro, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 191, 57, -1));
+        jDialog1.getContentPane().add(btnAgregarNro, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 90, -1));
         jDialog1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 115, 210, 34));
 
         jTextArea1.setEditable(false);
@@ -77,7 +77,7 @@ public class GuiMord extends javax.swing.JFrame {
         textAreaVistaPrevia.setRows(5);
         jScrollPane3.setViewportView(textAreaVistaPrevia);
 
-        jDialog1.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 66, -1, 219));
+        jDialog1.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, 219));
 
         jLabel5.setText("Vista previa:");
         jDialog1.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 38, 72, -1));
@@ -264,6 +264,7 @@ public class GuiMord extends javax.swing.JFrame {
             evaluarMetodos();
         } else {
             jDialog1.setVisible(true);
+            jDialog1.setLocationRelativeTo(null);
         }
         
     }//GEN-LAST:event_btnEvaluarActionPerformed
