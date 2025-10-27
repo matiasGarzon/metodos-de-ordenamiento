@@ -61,44 +61,32 @@ public class Vector {
         double oE = 0;
         double intercambios = 0;
         double comparaciones = 0;
-        oE++; // asignacion: i = 0
-        oE++; // asignacion j = 0
+
         long startTime = System.nanoTime();
 
         for (int i = 0; i < size - 1; i++) {
-            oE += 2; // comparacion y resta: i < size - 1
-            oE += 2; // i++, asignacion y suma
-            comparaciones++; //i < size - 1
+            boolean huboIntercambio = false; // para optimizar si ya está ordenado
 
             for (int j = 0; j < size - i - 1; j++) {
-                oE += 3; // comparacion y  2 restas: j < size - i - 1
-                oE += 2; //j++, asignacion y suma
-                comparaciones++; //i < size - 1
-                comparaciones++; //j < size - i - 1
-                oE += 4; // 2 accesos a vector, comparacion y suma: vector[j] > vector[j + 1]
-                comparaciones++; // comparacion de los vectores
+                comparaciones++; // comparación de datos (vector[j] > vector[j+1])
+                oE += 4; // 2 accesos + 1 comparación + 1 suma aproximado
+
                 if (vector[j] > vector[j + 1]) {
                     intercambiar(j, j + 1);
-                    oE = oE + 8; // operaciones elementales del metodo interxambiar
+                    oE += 8; // operaciones elementales del método intercambiar
                     intercambios++;
+                    huboIntercambio = true;
                 }
-                oE += 3; // comparacion y  2 restas: j < size - i - 1
-                comparaciones++; //j < size - i - 1
-                oE += 2; // suma y aignacion: j++  
             }
-            oE += 2; // comparacion y resta: i < size - 1
-            oE += 2; // suma y aignacion: i++
-        }
-        oE += 2; // comparacion y resta: i < size - 1 (ultima vuelta)
-        oE += 2; // i++, asignacion y suma (ultima vuelta)
-        comparaciones++; //i < size - 1 (ultima vuelta)
-        oE += 3; // comparacion y  2 restas: j < size - i - 1 (ultima vuelta)
-        oE += 2; //j++, asignacion y suma (ultima vuelta)
-        comparaciones++; //i < size - 1 (ultima vuelta)
-        comparaciones++; //j < size - i - 1 (ultima vuelta)
 
-        long endTime = System.nanoTime(); // Tiempo de finalización
-        long duracion = endTime - startTime; // Duración en milisegundos
+            // si no hubo ningún intercambio, el vector ya está ordenado
+            if (!huboIntercambio) {
+                break;
+            }
+        }
+
+        long endTime = System.nanoTime();
+        long duracion = endTime - startTime;
 
         resultados[0][0] = (double) duracion;
         resultados[0][1] = oE;
@@ -111,44 +99,32 @@ public class Vector {
         double oE = 0;
         double intercambios = 0;
         double comparaciones = 0;
-        oE++; // asignacion: i = 0
-        oE++; // asignacion j = 0
+
         long startTime = System.nanoTime();
 
         for (int i = 0; i < size - 1; i++) {
-            oE += 2; // comparacion y resta: i < size - 1
-            oE += 2; // i++, asignacion y suma
-            comparaciones++; //i < size - 1
+            boolean huboIntercambio = false; // para optimizar si ya está ordenado
 
             for (int j = 0; j < size - i - 1; j++) {
-                oE += 3; // comparacion y  2 restas: j < size - i - 1
-                oE += 2; //j++, asignacion y suma
-                comparaciones++; //i < size - 1
-                comparaciones++; //j < size - i - 1
-                oE += 4; // 2 accesos a vector, comparacion y suma: vector[j] > vector[j + 1]
-                comparaciones++; // comparacion de los vectores
+                comparaciones++; // comparación de datos (vector[j] > vector[j+1])
+                oE += 4; // 2 accesos + 1 comparación + 1 suma aproximado
+
                 if (vector[j] < vector[j + 1]) {
                     intercambiar(j, j + 1);
-                    oE = oE + 8; // operaciones elementales del metodo interxambiar
+                    oE += 8; // operaciones elementales del método intercambiar
                     intercambios++;
+                    huboIntercambio = true;
                 }
-                oE += 3; // comparacion y  2 restas: j < size - i - 1
-                comparaciones++; //j < size - i - 1
-                oE += 2; // suma y aignacion: j++  
             }
-            oE += 2; // comparacion y resta: i < size - 1
-            oE += 2; // suma y aignacion: i++
-        }
-        oE += 2; // comparacion y resta: i < size - 1 (ultima vuelta)
-        oE += 2; // i++, asignacion y suma (ultima vuelta)
-        comparaciones++; //i < size - 1 (ultima vuelta)
-        oE += 3; // comparacion y  2 restas: j < size - i - 1 (ultima vuelta)
-        oE += 2; //j++, asignacion y suma (ultima vuelta)
-        comparaciones++; //i < size - 1 (ultima vuelta)
-        comparaciones++; //j < size - i - 1 (ultima vuelta)
 
-        long endTime = System.nanoTime(); // Tiempo de finalización
-        long duracion = endTime - startTime; // Duración en milisegundos
+            // si no hubo ningún intercambio, el vector ya está ordenado
+            if (!huboIntercambio) {
+                break;
+            }
+        }
+
+        long endTime = System.nanoTime();
+        long duracion = endTime - startTime;
 
         resultados[0][0] = (double) duracion;
         resultados[0][1] = oE;
@@ -158,144 +134,104 @@ public class Vector {
     }
 
     public double[][] insercionBinariaAscendente(double[][] resultados) {
-        double oE = 0;
-        double intercambios = 0;
-        double comparaciones = 0;
+        double oE = 0;             // opcional: estimación simple
+        double movimientos = 0;    // SOLO movimientos reales (corrimientos + inserción si cambia de lugar)
+        double comparaciones = 0;  // SOLO comparaciones de datos (aux < vector[c])
+
         long startTime = System.nanoTime();
 
-        oE++; // asignacion: i = 1
-
         for (int i = 1; i < size; i++) {
-            oE += 2; // comparacion  i < size y suma
-            oE += 2; // i++, asignacion y suma
-            comparaciones++; //i < size - 1
             int aux = vector[i];
-            oE += 2; // asignacion y acceso a vector
+
+            // --- búsqueda binaria en [0, i-1] para hallar posición de inserción ---
             int primero = 0;
-            oE++; // asignacion
             int ultimo = i - 1;
-            oE += 2; //asignacion y resta
-
             while (primero <= ultimo) {
-                oE++; //comparacion
-                comparaciones++; //comparacion
                 int c = (primero + ultimo) / 2;
-                oE += 3; // asignacion. suma y division
 
-                oE += 2; // comparacion y acceso
-                comparaciones++;
+                comparaciones++;   // comparación de datos
+                oE += 3;           // (aprox) acceso + comparación + aritmética
+
                 if (aux < vector[c]) {
                     ultimo = c - 1;
-                    oE += 2; // asignacion y resta
                 } else {
                     primero = c + 1;
-                    oE += 2; // asignacion y suma
-                }
-            }
-            oE++; //comparacion (ultima vuelta while)
-            comparaciones++; //comparacion (ultima vuelta while)
-
-            oE += 2; // asignacion y resta j=1-1
-            for (int j = i - 1; j >= primero; j--) {
-                oE += 3; // comparacion y resta y asignacion
-                comparaciones++;
-                vector[j + 1] = vector[j];
-                oE += 4; // acceso, suma, asignacion y acceso
-                intercambios++;
-            }
-            vector[primero] = aux;
-            oE += 2; // acceso y asignacion
-            intercambios++;
-        }
-        oE += 2; // comparacion  i < size y suma (ultima vuelta for)
-        oE += 2; // i++, asignacion y suma (ultima vuelta for)
-        comparaciones++; //i < size - 1 (ultima vuelta for)
-
-        long endTime = System.nanoTime(); // Tiempo de finalización
-        long duracion = endTime - startTime; // Duración en milisegundos
-
-        resultados[1][0] = (double) duracion;
-        resultados[1][1] = oE;
-        resultados[1][2] = comparaciones;
-        resultados[1][3] = intercambios;
-        return resultados;
-
-    }
-
-    public double[][] insercionBinariaDescendente(double[][] resultados) {
-        double oE = 0;
-        double intercambios = 0;
-        double comparaciones = 0;
-        long startTime = System.nanoTime();
-
-        oE++; // asignación: i = 1
-
-        for (int i = 1; i < size; i++) {
-            oE += 2; // comparación i < size y suma
-            oE += 2; // i++, asignación y suma
-            comparaciones++; // i < size - 1
-
-            int aux = vector[i];
-            oE += 2; // asignación y acceso a vector
-
-            int primero = 0;
-            oE++; // asignación
-
-            int ultimo = i - 1;
-            oE += 2; // asignación y resta
-
-            while (primero <= ultimo) {
-                oE++; // comparación
-                comparaciones++; // comparación
-
-                int c = (primero + ultimo) / 2;
-                oE += 3; // asignación, suma y división
-
-                // DESCENDENTE: cambio la comparación de < a >
-                oE += 2; // comparación y acceso
-                comparaciones++;
-
-                if (aux > vector[c]) {
-                    // si aux es mayor, buscamos a la izquierda
-                    ultimo = c - 1;
-                    oE += 2; // asignación y resta
-                } else {
-                    // si aux es menor o igual, buscamos a la derecha
-                    primero = c + 1;
-                    oE += 2; // asignación y suma
                 }
             }
 
-            oE++; // comparación (última vuelta while)
-            comparaciones++; // comparación (última vuelta while)
-
-            oE += 2; // asignación y resta j = i - 1
+            // --- corrimientos hacia la derecha: j = i-1 .. primero ---
             for (int j = i - 1; j >= primero; j--) {
-                oE += 3; // comparación, resta y asignación
-                comparaciones++;
-
                 vector[j + 1] = vector[j];
-                oE += 4; // acceso, suma, asignación y acceso
-                intercambios++;
+                movimientos++;     // movimiento real (corrimiento)
+                oE += 1;           // asignación
             }
 
-            vector[primero] = aux;
-            oE += 2; // acceso y asignación
-            intercambios++;
+            // --- inserción solo si cambia de posición ---
+            if (primero != i) {
+                vector[primero] = aux;
+                movimientos++;     // inserción real
+                oE += 1;           // asignación
+            }
         }
-
-        oE += 2; // comparación i < size y suma (última vuelta)
-        oE += 2; // i++, asignación y suma (última vuelta)
-        comparaciones++; // i < size - 1 (última vuelta)
 
         long endTime = System.nanoTime();
         long duracion = endTime - startTime;
 
-        resultados[1][0] = (double) duracion; // ⚠️ cambia el índice si tu tabla usa otra fila
-        resultados[1][1] = oE;
-        resultados[1][2] = comparaciones;
-        resultados[1][3] = intercambios;
+        resultados[1][0] = (double) duracion;       // tiempo (ns)
+        resultados[1][1] = (double) oE;             // operaciones elementales (estimado)
+        resultados[1][2] = (double) comparaciones;  // comparaciones de datos
+        resultados[1][3] = (double) movimientos;    // movimientos reales
+        return resultados;
+    }
 
+    public double[][] insercionBinariaDescendente(double[][] resultados) {
+        double oE = 0;             // opcional: estimación simple
+        double movimientos = 0;    // SOLO movimientos reales (corrimientos + inserción si cambia de lugar)
+        double comparaciones = 0;  // SOLO comparaciones de datos (aux < vector[c])
+
+        long startTime = System.nanoTime();
+
+        for (int i = 1; i < size; i++) {
+            int aux = vector[i];
+
+            // --- búsqueda binaria en [0, i-1] para hallar posición de inserción ---
+            int primero = 0;
+            int ultimo = i - 1;
+            while (primero <= ultimo) {
+                int c = (primero + ultimo) / 2;
+
+                comparaciones++;   // comparación de datos
+                oE += 3;           // (aprox) acceso + comparación + aritmética
+
+                if (aux > vector[c]) {
+                    ultimo = c - 1;
+                } else {
+                    primero = c + 1;
+                }
+            }
+
+            // --- corrimientos hacia la derecha: j = i-1 .. primero ---
+            for (int j = i - 1; j >= primero; j--) {
+                vector[j + 1] = vector[j];
+                movimientos++;     // movimiento real (corrimiento)
+                oE += 1;           // asignación
+            }
+
+            // --- inserción solo si cambia de posición ---
+            if (primero != i) {
+                vector[primero] = aux;
+                movimientos++;     // inserción real
+                oE += 1;           // asignación
+            }
+        }
+
+        long endTime = System.nanoTime();
+        long duracion = endTime - startTime;
+
+        resultados[1][0] = (double) duracion;       // tiempo (ns)
+        resultados[1][1] = (double) oE;             // operaciones elementales (estimado)
+        resultados[1][2] = (double) comparaciones;  // comparaciones de datos
+        resultados[1][3] = (double) movimientos;    // movimientos reales
         return resultados;
     }
 
@@ -331,189 +267,85 @@ public class Vector {
     }
 
     public double[][] ordenamientoAscendenteShell(double[][] resultados) {
-        int salto, aux, i, contador;
-        boolean cambios;
-
-        double oE = 0;
-        double intercambios = 0;
         double comparaciones = 0;
+        double movimientos = 0;   // corrimientos + inserción
+        double oE = 0;
 
-        long startTime = System.nanoTime();
+        long start = System.nanoTime();
 
-        // for (salto = vector.length / 2; salto != 0; salto /= 2)
-        // init: salto = vector.length / 2
-        //   - acceso a length + división + asignación
-        oE += 3;
-        for (salto = vector.length / 2; salto != 0; salto /= 2) {
-            // condición del for: salto != 0
-            comparaciones++; // salto != 0
-            oE += 1; // comparación
-
-            // cambios = true;
-            oE += 1; // asignación
-            cambios = true;
-
-            // while (cambios)
-            // 1ª evaluación del while
-            comparaciones++; // cambios ?
-            oE += 1; // comparación
-            while (cambios) {
-                // cambios = false;
-                oE += 1; // asignación
-                cambios = false;
-
-                // contador = 0;
-                oE += 1; // asignación
-                contador = 0;
-
-                // for (i = salto; i < vector.length; i++)
-                // init: i = salto
-                oE += 1; // asignación
-                for (i = salto; i < vector.length; i++) {
-                    // condición del for: i < vector.length
-                    comparaciones++; // i < length
-                    oE += 1; // comparación
-
-                    // if (vector[i - salto] > vector[i])
-                    //   2 accesos a vector + 1 resta + 1 comparación
-                    oE += 4;
-                    comparaciones++; // comparación vector[i - salto] > vector[i]
-                    if (vector[i - salto] > vector[i]) {
-                        // aux = vector[i];
-                        // vector[i] = vector[i - salto];
-                        // vector[i - salto] = aux;
-                        // Tomamos swap ~ 8 operaciones elementales (como en tu burbuja)
-                        oE += 8;
-                        intercambios++;
-
-                        aux = vector[i];
-                        vector[i] = vector[i - salto];
-                        vector[i - salto] = aux;
-
-                        // cambios = true;
-                        oE += 1; // asignación
-                        cambios = true;
+        int n = vector.length;
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < n; i++) {
+                int temp = vector[i];
+                int j = i;
+                // while (j-gap >= 0 && vector[j-gap] > temp)
+                while (j >= gap) {
+                    comparaciones++;      // comparación de datos: vector[j-gap] > temp
+                    oE += 3;              // acceso + comparación + aritmética (est.)
+                    if (vector[j - gap] > temp) {
+                        vector[j] = vector[j - gap];
+                        j -= gap;
+                        movimientos++;     // corrimiento
+                        oE += 1;          // asignación
+                    } else {
+                        break;
                     }
-
-                    // i++ (incremento del for): suma + asignación
-                    oE += 2;
                 }
-                // última evaluación de la condición del for (falsa)
-                comparaciones++; // i < length (última)
-                oE += 1; // comparación
-
-                // vuelve a evaluar el while en la próxima iteración
-                comparaciones++; // cambios ?
-                oE += 1; // comparación
+                if (j != i) {             // inserción real
+                    vector[j] = temp;
+                    movimientos++;
+                    oE += 1;
+                }
             }
-
-            // update del for: salto /= 2 (división + asignación)
-            oE += 2;
         }
-        // última evaluación de la condición del for (salto != 0) que resulta falsa
-        comparaciones++; // salto != 0 (última)
-        oE += 1; // comparación
 
-        long endTime = System.nanoTime(); // Tiempo de finalización
-        long duracion = endTime - startTime; // Duración en milisegundos
+        long end = System.nanoTime();
 
-        // guardo en fila 2 (como ya hacías)
-        resultados[2][0] = (double) duracion;
+        resultados[2][0] = (double) (end - start);
         resultados[2][1] = oE;
-        resultados[2][2] = comparaciones;
-        resultados[2][3] = intercambios;
-
+        resultados[2][2] = comparaciones;  // SOLO datos
+        resultados[2][3] = movimientos;    // movimientos reales
         return resultados;
     }
-
     public double[][] ordenamientoDescendenteShell(double[][] resultados) {
-        int salto, aux, i, contador;
-        boolean cambios;
-
+            double comparaciones = 0;
+        double movimientos = 0;   // corrimientos + inserción
         double oE = 0;
-        double intercambios = 0;
-        double comparaciones = 0;
 
-        long startTime = System.nanoTime();
+        long start = System.nanoTime();
 
-        // for (salto = vector.length / 2; salto != 0; salto /= 2)
-        // init: salto = vector.length / 2  -> acceso a length + división + asignación
-        oE += 3;
-        for (salto = vector.length / 2; salto != 0; salto /= 2) {
-            // condición del for: salto != 0
-            comparaciones++;  // salto != 0
-            oE += 1;          // comparación
-
-            // cambios = true;
-            oE += 1;          // asignación
-            cambios = true;
-
-            // 1ª evaluación del while (cambios)
-            comparaciones++;  // cambios ?
-            oE += 1;          // comparación
-            while (cambios) {
-                // cambios = false;
-                oE += 1;      // asignación
-                cambios = false;
-
-                // contador = 0;
-                oE += 1;      // asignación
-                contador = 0;
-
-                // for (i = salto; i < vector.length; i++)
-                // init: i = salto
-                oE += 1;      // asignación
-                for (i = salto; i < vector.length; i++) {
-                    // condición del for: i < vector.length
-                    comparaciones++; // i < length
-                    oE += 1;         // comparación
-
-                    // DESCENDENTE: if (vector[i - salto] < vector[i])  (antes era >)
-                    // 2 accesos a vector + 1 resta + 1 comparación
-                    oE += 4;
-                    comparaciones++; // comparación vector[i - salto] < vector[i]
-                    if (vector[i - salto] < vector[i]) {
-                        // swap (mismo costo que usás en burbuja)
-                        oE += 8;
-                        intercambios++;
-
-                        aux = vector[i];
-                        vector[i] = vector[i - salto];
-                        vector[i - salto] = aux;
-
-                        // cambios = true;
-                        oE += 1; // asignación
-                        cambios = true;
+        int n = vector.length;
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < n; i++) {
+                int temp = vector[i];
+                int j = i;
+                // while (j-gap >= 0 && vector[j-gap] > temp)
+                while (j >= gap) {
+                    comparaciones++;      // comparación de datos: vector[j-gap] > temp
+                    oE += 3;              // acceso + comparación + aritmética (est.)
+                    if (vector[j - gap] < temp) {
+                        vector[j] = vector[j - gap];
+                        j -= gap;
+                        movimientos++;     // corrimiento
+                        oE += 1;          // asignación
+                    } else {
+                        break;
                     }
-
-                    // i++ -> suma + asignación
-                    oE += 2;
                 }
-                // última evaluación de la condición del for (falsa)
-                comparaciones++; // i < length (última)
-                oE += 1;         // comparación
-
-                // reevaluación del while
-                comparaciones++; // cambios ?
-                oE += 1;         // comparación
+                if (j != i) {             // inserción real
+                    vector[j] = temp;
+                    movimientos++;
+                    oE += 1;
+                }
             }
-
-            // update del for: salto /= 2  (división + asignación)
-            oE += 2;
         }
-        // última evaluación de la condición del for (salto != 0) que resulta falsa
-        comparaciones++; // salto != 0 (última)
-        oE += 1;         // comparación
 
-        long endTime = System.nanoTime(); // Tiempo de finalización
-        long duracion = endTime - startTime; // Duración en milisegundos
+        long end = System.nanoTime();
 
-        // ⚠ Ajustá el índice de fila si tu matriz de resultados usa otro lugar
-        resultados[2][0] = (double) duracion;
+        resultados[2][0] = (double) (end - start);
         resultados[2][1] = oE;
-        resultados[2][2] = comparaciones;
-        resultados[2][3] = intercambios;
-
+        resultados[2][2] = comparaciones;  // SOLO datos
+        resultados[2][3] = movimientos;    // movimientos reales
         return resultados;
     }
 

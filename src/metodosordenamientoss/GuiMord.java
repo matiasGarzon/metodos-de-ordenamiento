@@ -1,16 +1,19 @@
 package metodosordenamientoss;
 
+import static java.lang.Math.random;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class GuiMord extends javax.swing.JFrame {
 
     public GuiMord() {
         initComponents();
+        sizeSpinner4.setValue(100);
     }
     Vector vector;
     double[][] resultados = new double[9][4];
     DefaultTableModel modeloTabla;
-
+    private int targetSize;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -26,9 +29,9 @@ public class GuiMord extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         textAreaVistaPrevia = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
+        sizeSpinner3 = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        sizeSpinner = new javax.swing.JSpinner();
         btnDesordenadoInicial = new javax.swing.JRadioButton();
         btnAscendenteInicial = new javax.swing.JRadioButton();
         btnDescendenteInicial = new javax.swing.JRadioButton();
@@ -39,6 +42,12 @@ public class GuiMord extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        sizeSpinner2 = new javax.swing.JSpinner();
+        sizeSpinner4 = new javax.swing.JSpinner();
+        sizeSpinner1 = new javax.swing.JSpinner();
 
         jDialog1.setAlwaysOnTop(true);
         jDialog1.setSize(new java.awt.Dimension(771, 554));
@@ -156,25 +165,57 @@ public class GuiMord extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
         jTable1.getAccessibleContext().setAccessibleName("");
 
+        jLabel6.setText("valor minimo:");
+
+        jLabel7.setText("valor maximo:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(sizeSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sizeSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(166, 166, 166))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sizeSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sizeSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sizeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnDescendenteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAscendenteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(28, 28, 28)
+                            .addComponent(btnAscendenteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(sizeSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -186,11 +227,12 @@ public class GuiMord extends javax.swing.JFrame {
                         .addComponent(btnDescendenteInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(btnEvaluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                        .addComponent(btnEvaluar, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)))
+                .addContainerGap(102, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,24 +240,27 @@ public class GuiMord extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(sizeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDesordenadoInicial)
                     .addComponent(btnAscendenteInicial)
                     .addComponent(btnDescendenteInicial)
-                    .addComponent(jLabel2))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2)
+                    .addComponent(sizeSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(btnEvaluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(1, 1, 1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAscendenteFinal)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDescendenteFinal))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(btnEvaluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                        .addComponent(btnDescendenteFinal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,10 +283,6 @@ public class GuiMord extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDesordenadoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesordenadoInicialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDesordenadoInicialActionPerformed
-
     private void llenarTabla() {
         // Llenar la tabla con los datos de la matriz
         for (int i = 0; i < 8; i++) {
@@ -252,20 +293,6 @@ public class GuiMord extends javax.swing.JFrame {
         }
     }
     
-    private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
-
-        vector = new Vector((int) sizeSpinner.getValue());
-
-        if (vector.length() > 10) {
-            vector.cargaRandom(0, vector.length() * 10);
-            evaluarMetodos();
-        } else {
-            jDialog1.setVisible(true);
-            jDialog1.setLocationRelativeTo(null);
-        }
-        
-    }//GEN-LAST:event_btnEvaluarActionPerformed
-
     private void evaluarMetodos() {
         if (btnAscendenteInicial.isSelected()) {
             vector.burbujaMejoradaAscendente();
@@ -281,14 +308,6 @@ public class GuiMord extends javax.swing.JFrame {
         llenarTabla();
         vector.imprimirVector();
     }
-    private void btnAscendenteInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAscendenteInicialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAscendenteInicialActionPerformed
-
-    private void btnAscendenteFinalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAscendenteFinalStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAscendenteFinalStateChanged
-
     private void textFieldNumerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNumerosActionPerformed
     }//GEN-LAST:event_textFieldNumerosActionPerformed
 
@@ -296,12 +315,46 @@ public class GuiMord extends javax.swing.JFrame {
         textAreaVistaPrevia.setText(textAreaVistaPrevia.getText()+ "\n" + textFieldNumeros.getText());
         vector.add(Integer.parseInt(textFieldNumeros.getText()));
         textFieldNumeros.setText("");
-        if (vector.size() == (int) sizeSpinner.getValue()){
+        if (vector.size() == targetSize){
             jDialog1.setVisible(false);
             evaluarMetodos();
         }
     }//GEN-LAST:event_btnAgregarNroActionPerformed
-    
+
+    private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
+         int size = (int) sizeSpinner1.getValue();   // Cantidad de elementos
+    int min  = (int) sizeSpinner2.getValue();   // Valor mínimo
+    int max  = (int) sizeSpinner4.getValue();   // Valor máximo
+
+    // Validación simple
+    if (min >= max) {
+        JOptionPane.showMessageDialog(this, "El valor mínimo debe ser menor que el máximo.");
+        return;
+    }
+
+    targetSize = size;                // guardo para usar en el JDialog
+    vector = new Vector(size);        // <<< acá estaba el error: NO usar sizeSpinner2
+
+    if (size > 10) {                  // <<< condicioná por la CANTIDAD, no por min
+        vector.cargaRandom(min, max);
+        evaluarMetodos();
+    } else {
+        jDialog1.setLocationRelativeTo(this);
+        jDialog1.setVisible(true);
+    }
+    }//GEN-LAST:event_btnEvaluarActionPerformed
+
+    private void btnAscendenteFinalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAscendenteFinalStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAscendenteFinalStateChanged
+
+    private void btnAscendenteInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAscendenteInicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAscendenteInicialActionPerformed
+
+    private void btnDesordenadoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesordenadoInicialActionPerformed
+        // TODO add your handling code here:0
+    }//GEN-LAST:event_btnDesordenadoInicialActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarNro;
@@ -319,13 +372,19 @@ public class GuiMord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JSpinner sizeSpinner;
+    private javax.swing.JSpinner sizeSpinner1;
+    private javax.swing.JSpinner sizeSpinner2;
+    private javax.swing.JSpinner sizeSpinner3;
+    private javax.swing.JSpinner sizeSpinner4;
     private javax.swing.JTextArea textAreaVistaPrevia;
     private javax.swing.JTextField textFieldNumeros;
     // End of variables declaration//GEN-END:variables
