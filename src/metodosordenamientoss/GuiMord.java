@@ -11,7 +11,7 @@ public class GuiMord extends javax.swing.JFrame {
         sizeSpinner4.setValue(100);
     }
     Vector vector;
-    double[][] resultados = new double[9][4];
+    double[][] resultados;
     DefaultTableModel modeloTabla;
     private int targetSize;
     @SuppressWarnings("unchecked")
@@ -48,6 +48,14 @@ public class GuiMord extends javax.swing.JFrame {
         sizeSpinner2 = new javax.swing.JSpinner();
         sizeSpinner4 = new javax.swing.JSpinner();
         sizeSpinner1 = new javax.swing.JSpinner();
+        chk_burbuja = new javax.swing.JCheckBox();
+        chk_burbujaOptimizada = new javax.swing.JCheckBox();
+        chk_burbujaMejorada = new javax.swing.JCheckBox();
+        chk_insercion = new javax.swing.JCheckBox();
+        chk_quickSort = new javax.swing.JCheckBox();
+        chk_mergeSort = new javax.swing.JCheckBox();
+        chk_shell = new javax.swing.JCheckBox();
+        chk_seleccion = new javax.swing.JCheckBox();
 
         jDialog1.setAlwaysOnTop(true);
         jDialog1.setSize(new java.awt.Dimension(771, 554));
@@ -196,6 +204,37 @@ public class GuiMord extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        chk_burbuja.setText("Burbuja");
+        chk_burbuja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chk_burbujaActionPerformed(evt);
+            }
+        });
+
+        chk_burbujaOptimizada.setText("Burbuja Optimizada");
+        chk_burbujaOptimizada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chk_burbujaOptimizadaActionPerformed(evt);
+            }
+        });
+
+        chk_burbujaMejorada.setText("Burbuja Mejorada");
+
+        chk_insercion.setText("Inserción");
+        chk_insercion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chk_insercionActionPerformed(evt);
+            }
+        });
+
+        chk_quickSort.setText("Quick Sort");
+
+        chk_mergeSort.setText("Merge Sort");
+
+        chk_shell.setText("Shell");
+
+        chk_seleccion.setText("Seleccion");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -233,6 +272,26 @@ public class GuiMord extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(chk_insercion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(129, 129, 129)
+                        .addComponent(chk_quickSort, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(chk_burbuja, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(129, 129, 129)
+                        .addComponent(chk_burbujaMejorada, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(117, 117, 117)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chk_seleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chk_burbujaOptimizada))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chk_mergeSort, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chk_shell, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,11 +315,23 @@ public class GuiMord extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDescendenteFinal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chk_burbujaMejorada)
+                    .addComponent(chk_burbujaOptimizada)
+                    .addComponent(chk_burbuja)
+                    .addComponent(chk_mergeSort))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chk_quickSort)
+                    .addComponent(chk_insercion)
+                    .addComponent(chk_seleccion)
+                    .addComponent(chk_shell))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -276,8 +347,7 @@ public class GuiMord extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -294,17 +364,74 @@ public class GuiMord extends javax.swing.JFrame {
     }
     
     private void evaluarMetodos() {
+        // 1. Pre-ordena el vector según la opción inicial (si no es "Desordenado")
         if (btnAscendenteInicial.isSelected()) {
             vector.burbujaMejoradaAscendente();
         } else if (btnDescendenteInicial.isSelected()) {
             vector.burbujaMejoradaDescendente();
         }
-        
-        if(btnAscendenteFinal.isSelected()){
-            resultados = vector.ascendentes(resultados);
-        } else if (btnDescendenteFinal.isSelected()){
-            resultados = vector.descendentes(resultados);
+
+        // 2. Limpia la matriz de resultados antes de una nueva evaluación
+        //    Esto es importante para no mostrar datos de una ejecución anterior.
+        this.resultados = new double[9][4];
+
+        // 3. Evalúa los métodos seleccionados según el orden final (Ascendente/Descendente)
+        if (btnAscendenteFinal.isSelected()) {
+            // --- SECCIÓN PARA ORDENAMIENTO ASCENDENTE ---
+            if (chk_burbuja.isSelected()) {
+                resultados = vector.clonar().ordenamientoBurbujaAscendente(resultados);
+            }
+            if (chk_insercion.isSelected()) {
+                resultados = vector.clonar().insercionBinariaAscendente(resultados);
+            }
+            if (chk_shell.isSelected()) {
+                resultados = vector.clonar().ordenamientoAscendenteShell(resultados);
+            }
+            if (chk_burbujaMejorada.isSelected()) {
+                resultados = vector.clonar().burbujaMejoradaAscendente(resultados);
+            }
+            if (chk_quickSort.isSelected()) {
+                resultados = vector.clonar().quickSortAscendente(resultados);
+            }
+            if (chk_seleccion.isSelected()) {
+                resultados = vector.clonar().seleccionAscendente(resultados);
+            }
+            if (chk_burbujaOptimizada.isSelected()) {
+                resultados = vector.clonar().burbujaOptimizadaAscendente(resultados);
+            }
+            if (chk_mergeSort.isSelected()) {
+                resultados = vector.clonar().mergeSortAscendente(resultados);
+            }
+
+        } else if (btnDescendenteFinal.isSelected()) {
+            // --- SECCIÓN PARA ORDENAMIENTO DESCENDENTE ---
+            if (chk_burbuja.isSelected()) {
+                resultados = vector.clonar().ordenamientoBurbujaDescendete(resultados);
+            }
+            if (chk_insercion.isSelected()) {
+                resultados = vector.clonar().insercionBinariaDescendente(resultados);
+            }
+            if (chk_shell.isSelected()) {
+                resultados = vector.clonar().ordenamientoDescendenteShell(resultados);
+            }
+            if (chk_burbujaMejorada.isSelected()) {
+                resultados = vector.clonar().burbujaMejoradaDescendente(resultados);
+            }
+            if (chk_quickSort.isSelected()) {
+                resultados = vector.clonar().quickSortDescendente(resultados);
+            }
+            if (chk_seleccion.isSelected()) {
+                resultados = vector.clonar().seleccionDescendente(resultados);
+            }
+            if (chk_burbujaOptimizada.isSelected()) {
+                resultados = vector.clonar().burbujaOptimizadaDescendente(resultados);
+            }
+            if (chk_mergeSort.isSelected()) {
+                resultados = vector.clonar().mergeSortDescendente(resultados);
+            }
         }
+
+        // 4. Muestra los resultados en la tabla y en la consola
         llenarTabla();
         vector.imprimirVector();
     }
@@ -356,6 +483,18 @@ public class GuiMord extends javax.swing.JFrame {
         // TODO add your handling code here:0
     }//GEN-LAST:event_btnDesordenadoInicialActionPerformed
 
+    private void chk_burbujaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_burbujaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chk_burbujaActionPerformed
+
+    private void chk_insercionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_insercionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chk_insercionActionPerformed
+
+    private void chk_burbujaOptimizadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_burbujaOptimizadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chk_burbujaOptimizadaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarNro;
     private javax.swing.JRadioButton btnAscendenteFinal;
@@ -366,6 +505,14 @@ public class GuiMord extends javax.swing.JFrame {
     private javax.swing.JButton btnEvaluar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JCheckBox chk_burbuja;
+    private javax.swing.JCheckBox chk_burbujaMejorada;
+    private javax.swing.JCheckBox chk_burbujaOptimizada;
+    private javax.swing.JCheckBox chk_insercion;
+    private javax.swing.JCheckBox chk_mergeSort;
+    private javax.swing.JCheckBox chk_quickSort;
+    private javax.swing.JCheckBox chk_seleccion;
+    private javax.swing.JCheckBox chk_shell;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

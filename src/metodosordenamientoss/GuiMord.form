@@ -148,7 +148,6 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -201,6 +200,32 @@
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="chk_insercion" min="-2" pref="93" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                          <Component id="chk_quickSort" min="-2" pref="93" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="chk_burbuja" min="-2" pref="93" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                          <Component id="chk_burbujaMejorada" min="-2" pref="149" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="chk_seleccion" min="-2" pref="93" max="-2" attributes="0"/>
+                      <Component id="chk_burbujaOptimizada" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="chk_mergeSort" min="-2" pref="93" max="-2" attributes="0"/>
+                      <Component id="chk_shell" min="-2" pref="93" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -228,13 +253,27 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnDescendenteFinal" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="17" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="152" max="-2" attributes="0"/>
-                  <EmptySpace pref="51" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="chk_burbujaMejorada" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chk_burbujaOptimizada" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chk_burbuja" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chk_mergeSort" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="chk_quickSort" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="chk_insercion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chk_seleccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chk_shell" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -434,6 +473,55 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JSpinner" name="sizeSpinner1">
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_burbuja">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Burbuja"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chk_burbujaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_burbujaOptimizada">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Burbuja Optimizada"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chk_burbujaOptimizadaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_burbujaMejorada">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Burbuja Mejorada"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_insercion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Inserci&#xf3;n"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chk_insercionActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_quickSort">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Quick Sort"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_mergeSort">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Merge Sort"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_shell">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Shell"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_seleccion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Seleccion"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
