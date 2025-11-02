@@ -11,9 +11,10 @@ public class GuiMord extends javax.swing.JFrame {
         sizeSpinner4.setValue(100);
     }
     Vector vector;
-    double[][] resultados;
+    long[][] resultados;
     DefaultTableModel modeloTabla;
     private int targetSize;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,6 +31,7 @@ public class GuiMord extends javax.swing.JFrame {
         textAreaVistaPrevia = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         sizeSpinner3 = new javax.swing.JSpinner();
+        AlertVectorVacio = new javax.swing.JOptionPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnDesordenadoInicial = new javax.swing.JRadioButton();
@@ -37,7 +39,6 @@ public class GuiMord extends javax.swing.JFrame {
         btnDescendenteInicial = new javax.swing.JRadioButton();
         btnAscendenteFinal = new javax.swing.JRadioButton();
         btnDescendenteFinal = new javax.swing.JRadioButton();
-        btnEvaluar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -56,6 +57,9 @@ public class GuiMord extends javax.swing.JFrame {
         chk_mergeSort = new javax.swing.JCheckBox();
         chk_shell = new javax.swing.JCheckBox();
         chk_seleccion = new javax.swing.JCheckBox();
+        jPanel3 = new javax.swing.JPanel();
+        btnGenerar = new javax.swing.JButton();
+        btnEvaluar = new javax.swing.JButton();
 
         jDialog1.setAlwaysOnTop(true);
         jDialog1.setSize(new java.awt.Dimension(771, 554));
@@ -134,13 +138,6 @@ public class GuiMord extends javax.swing.JFrame {
 
         buttonGroup2.add(btnDescendenteFinal);
         btnDescendenteFinal.setText("Descendente");
-
-        btnEvaluar.setText("Evaluar metodos");
-        btnEvaluar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEvaluarActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Orden inicial:");
 
@@ -235,6 +232,40 @@ public class GuiMord extends javax.swing.JFrame {
 
         chk_seleccion.setText("Seleccion");
 
+        btnGenerar.setText("Generar vector");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
+
+        btnEvaluar.setText("Evaluar metodos");
+        btnEvaluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEvaluarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(btnGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEvaluar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGenerar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(btnEvaluar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -263,11 +294,11 @@ public class GuiMord extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addComponent(btnAscendenteInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDescendenteInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDescendenteInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(135, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(btnEvaluar, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -306,16 +337,15 @@ public class GuiMord extends javax.swing.JFrame {
                     .addComponent(sizeSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(btnEvaluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(1, 1, 1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAscendenteFinal)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDescendenteFinal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnDescendenteFinal))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,11 +356,12 @@ public class GuiMord extends javax.swing.JFrame {
                     .addComponent(chk_burbuja)
                     .addComponent(chk_mergeSort))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chk_quickSort)
-                    .addComponent(chk_insercion)
-                    .addComponent(chk_seleccion)
-                    .addComponent(chk_shell))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(chk_insercion)
+                        .addComponent(chk_seleccion)
+                        .addComponent(chk_shell)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -358,11 +389,11 @@ public class GuiMord extends javax.swing.JFrame {
         for (int i = 0; i < 8; i++) {
             // Asumimos que la matriz tiene 5 columnas
             for (int j = 0; j < 4; j++) {
-                jTable1.setValueAt(resultados[i][j], i, j+1);  // Coloca cada valor en la tabla
+                jTable1.setValueAt(resultados[i][j], i, j + 1);  // Coloca cada valor en la tabla
             }
         }
     }
-    
+
     private void evaluarMetodos() {
         // 1. Pre-ordena el vector según la opción inicial (si no es "Desordenado")
         if (btnAscendenteInicial.isSelected()) {
@@ -373,103 +404,115 @@ public class GuiMord extends javax.swing.JFrame {
 
         // 2. Limpia la matriz de resultados antes de una nueva evaluación
         //    Esto es importante para no mostrar datos de una ejecución anterior.
-        this.resultados = new double[9][4];
+        this.resultados = new long[8][4];
 
         // 3. Evalúa los métodos seleccionados según el orden final (Ascendente/Descendente)
         if (btnAscendenteFinal.isSelected()) {
             // --- SECCIÓN PARA ORDENAMIENTO ASCENDENTE ---
+
             if (chk_burbuja.isSelected()) {
-                resultados = vector.clonar().ordenamientoBurbujaAscendente(resultados);
+                resultados[0] = vector.clonar().burbujaAscendente();
             }
             if (chk_insercion.isSelected()) {
-                resultados = vector.clonar().insercionBinariaAscendente(resultados);
+                resultados[1] = vector.clonar().insercionBinariaAscendente();
             }
             if (chk_shell.isSelected()) {
-                resultados = vector.clonar().ordenamientoAscendenteShell(resultados);
+                resultados[2] = vector.clonar().shellAscendente();
             }
             if (chk_burbujaMejorada.isSelected()) {
-                resultados = vector.clonar().burbujaMejoradaAscendente(resultados);
+                resultados[3] = vector.clonar().burbujaMejoradaAscendente();
             }
             if (chk_quickSort.isSelected()) {
-                resultados = vector.clonar().quickSortAscendente(resultados);
+                resultados[4] = vector.clonar().quickSortAscendente();
             }
             if (chk_seleccion.isSelected()) {
-                resultados = vector.clonar().seleccionAscendente(resultados);
+                resultados[5] = vector.clonar().seleccionAscendente();
             }
             if (chk_burbujaOptimizada.isSelected()) {
-                resultados = vector.clonar().burbujaOptimizadaAscendente(resultados);
+                resultados[6] = vector.clonar().burbujaOptimizadaAscendente();
             }
             if (chk_mergeSort.isSelected()) {
-                resultados = vector.clonar().mergeSortAscendente(resultados);
+                resultados[7] = vector.clonar().mergeSortAscendente();
             }
 
         } else if (btnDescendenteFinal.isSelected()) {
             // --- SECCIÓN PARA ORDENAMIENTO DESCENDENTE ---
             if (chk_burbuja.isSelected()) {
-                resultados = vector.clonar().ordenamientoBurbujaDescendete(resultados);
+                resultados[0] = vector.clonar().burbujaDescendente();
             }
             if (chk_insercion.isSelected()) {
-                resultados = vector.clonar().insercionBinariaDescendente(resultados);
+                resultados[1] = vector.clonar().insercionBinariaDescendente();
             }
             if (chk_shell.isSelected()) {
-                resultados = vector.clonar().ordenamientoDescendenteShell(resultados);
+                resultados[2] = vector.clonar().shellDescendente();
             }
             if (chk_burbujaMejorada.isSelected()) {
-                resultados = vector.clonar().burbujaMejoradaDescendente(resultados);
+                resultados[3] = vector.clonar().burbujaMejoradaDescendente();
             }
             if (chk_quickSort.isSelected()) {
-                resultados = vector.clonar().quickSortDescendente(resultados);
+                resultados[4] = vector.clonar().quickSortDescendente();
             }
             if (chk_seleccion.isSelected()) {
-                resultados = vector.clonar().seleccionDescendente(resultados);
+                resultados[5] = vector.clonar().seleccionDescendente();
             }
             if (chk_burbujaOptimizada.isSelected()) {
-                resultados = vector.clonar().burbujaOptimizadaDescendente(resultados);
+                resultados[6] = vector.clonar().burbujaOptimizadaDescendente();
             }
             if (chk_mergeSort.isSelected()) {
-                resultados = vector.clonar().mergeSortDescendente(resultados);
+                resultados[7] = vector.clonar().mergeSortDescendente();
             }
         }
-
         // 4. Muestra los resultados en la tabla y en la consola
         llenarTabla();
-        vector.imprimirVector();
     }
     private void textFieldNumerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNumerosActionPerformed
     }//GEN-LAST:event_textFieldNumerosActionPerformed
 
     private void btnAgregarNroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNroActionPerformed
-        textAreaVistaPrevia.setText(textAreaVistaPrevia.getText()+ "\n" + textFieldNumeros.getText());
         vector.add(Integer.parseInt(textFieldNumeros.getText()));
+        textAreaVistaPrevia.setText(textAreaVistaPrevia.getText() + "\n" + textFieldNumeros.getText());
         textFieldNumeros.setText("");
-        if (vector.size() == targetSize){
+        jTextArea1.setText("Ingrese un número para la posición " + (vector.size()+1) +" del vector:");
+        if (vector.size() == targetSize) {
             jDialog1.setVisible(false);
-            evaluarMetodos();
+            textAreaVistaPrevia.setText("");
         }
     }//GEN-LAST:event_btnAgregarNroActionPerformed
 
-    private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
-         int size = (int) sizeSpinner1.getValue();   // Cantidad de elementos
-    int min  = (int) sizeSpinner2.getValue();   // Valor mínimo
-    int max  = (int) sizeSpinner4.getValue();   // Valor máximo
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        int size = (int) sizeSpinner1.getValue();   // Cantidad de elementos
+        int min = (int) sizeSpinner2.getValue();   // Valor mínimo
+        int max = (int) sizeSpinner4.getValue();   // Valor máximo
 
-    // Validación simple
-    if (min >= max) {
-        JOptionPane.showMessageDialog(this, "El valor mínimo debe ser menor que el máximo.");
-        return;
-    }
+        // Validación simple
+        if (min >= max) {
+            JOptionPane.showMessageDialog(this, "El valor mínimo debe ser menor que el máximo.");
+            return;
+        }
 
-    targetSize = size;                // guardo para usar en el JDialog
-    vector = new Vector(size);        // <<< acá estaba el error: NO usar sizeSpinner2
+        targetSize = size;                // guardo para usar en el JDialog
+        vector = new Vector(size);        // <<< acá estaba el error: NO usar sizeSpinner2
 
-    if (size > 10) {                  // <<< condicioná por la CANTIDAD, no por min
-        vector.cargaRandom(min, max);
-        evaluarMetodos();
-    } else {
-        jDialog1.setLocationRelativeTo(this);
-        jDialog1.setVisible(true);
-    }
-    }//GEN-LAST:event_btnEvaluarActionPerformed
+        if (size > 10) {                  // <<< condicioná por la CANTIDAD, no por min
+            vector.cargaRandom(min, max);
+            
+        } else {
+            jDialog1.setLocationRelativeTo(this);
+            jDialog1.setVisible(true);
+        }
+    }//GEN-LAST:event_btnGenerarActionPerformed
+
+    private void chk_insercionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_insercionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chk_insercionActionPerformed
+
+    private void chk_burbujaOptimizadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_burbujaOptimizadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chk_burbujaOptimizadaActionPerformed
+
+    private void chk_burbujaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_burbujaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chk_burbujaActionPerformed
 
     private void btnAscendenteFinalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAscendenteFinalStateChanged
         // TODO add your handling code here:
@@ -483,19 +526,17 @@ public class GuiMord extends javax.swing.JFrame {
         // TODO add your handling code here:0
     }//GEN-LAST:event_btnDesordenadoInicialActionPerformed
 
-    private void chk_burbujaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_burbujaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chk_burbujaActionPerformed
-
-    private void chk_insercionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_insercionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chk_insercionActionPerformed
-
-    private void chk_burbujaOptimizadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_burbujaOptimizadaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chk_burbujaOptimizadaActionPerformed
+    private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
+        if (this.vector != null && vector.size() > 0) {
+            evaluarMetodos();
+        } else {
+            AlertVectorVacio.showMessageDialog(this, "El vector está vacio.");
+            return;
+        }
+    }//GEN-LAST:event_btnEvaluarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JOptionPane AlertVectorVacio;
     private javax.swing.JButton btnAgregarNro;
     private javax.swing.JRadioButton btnAscendenteFinal;
     private javax.swing.JRadioButton btnAscendenteInicial;
@@ -503,6 +544,7 @@ public class GuiMord extends javax.swing.JFrame {
     private javax.swing.JRadioButton btnDescendenteInicial;
     private javax.swing.JRadioButton btnDesordenadoInicial;
     private javax.swing.JButton btnEvaluar;
+    private javax.swing.JButton btnGenerar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JCheckBox chk_burbuja;
@@ -523,6 +565,7 @@ public class GuiMord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -536,4 +579,3 @@ public class GuiMord extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldNumeros;
     // End of variables declaration//GEN-END:variables
 }
-
