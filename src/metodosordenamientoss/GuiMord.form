@@ -189,13 +189,10 @@
                           <Component id="btnAscendenteInicial" min="-2" pref="110" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnDescendenteInicial" min="-2" pref="110" max="-2" attributes="0"/>
-                          <EmptySpace pref="135" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -221,7 +218,7 @@
                       <Component id="chk_seleccion" min="-2" pref="93" max="-2" attributes="0"/>
                       <Component id="chk_burbujaOptimizada" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="90" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="chk_mergeSort" min="-2" pref="93" max="-2" attributes="0"/>
                       <Component id="chk_shell" min="-2" pref="93" max="-2" attributes="0"/>

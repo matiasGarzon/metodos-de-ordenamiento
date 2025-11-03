@@ -397,9 +397,9 @@ public class GuiMord extends javax.swing.JFrame {
     private void evaluarMetodos() {
         // 1. Pre-ordena el vector según la opción inicial (si no es "Desordenado")
         if (btnAscendenteInicial.isSelected()) {
-            vector.burbujaMejoradaAscendente();
+            vector.quickSortAscendente();
         } else if (btnDescendenteInicial.isSelected()) {
-            vector.burbujaMejoradaDescendente();
+            vector.quickSortDescendente();
         }
 
         // 2. Limpia la matriz de resultados antes de una nueva evaluación
